@@ -1,0 +1,142 @@
+.heroContainer {
+  width: 100%;
+  height: 55vh; /* Compact height for better conversion */
+  position: relative;
+  background: var(--color-gray-100);
+  overflow: hidden;
+}
+
+.mySwiper {
+  width: 100%;
+  height: 100%;
+}
+
+.slide {
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: center;
+}
+
+.overlay {
+  width: 100%;
+  height: 100%;
+  /* Subtle dark gradient for text readability */
+  background: linear-gradient(to right, rgba(0,0,0,0.5) 0%, transparent 60%);
+  display: flex;
+  align-items: center;
+  padding: 0 var(--space-16);
+}
+
+.content {
+  max-width: 500px;
+  color: var(--color-white);
+  /* Animation for text when slide changes */
+  animation: slideInUp 0.8s ease-out forwards;
+}
+
+.heroTitle {
+  font-size: 2.8rem; /* Slightly smaller for compact look */
+  font-weight: var(--font-weight-bold);
+  margin-bottom: var(--space-2);
+  line-height: 1.1;
+  color: var(--color-white);
+}
+
+.heroSubtitle {
+  font-size: 1.1rem;
+  margin-bottom: var(--space-6);
+  color: var(--color-gray-200);
+  font-weight: var(--font-weight-normal);
+}
+
+/* Button with Pink Brand Color */
+.btn {
+  display: inline-block;
+  padding: var(--space-3) var(--space-8);
+  border-radius: var(--radius-full);
+  font-weight: var(--font-weight-semibold);
+  transition: all var(--transition-base);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 0.9rem;
+}
+
+.primary {
+  background-color: var(--color-primary);
+  color: var(--color-white);
+  box-shadow: 0 4px 15px rgba(233, 30, 99, 0.3);
+}
+
+.primary:hover {
+  background-color: var(--color-primary-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(233, 30, 99, 0.4);
+}
+
+/* Pagination & Navigation Customization */
+:global(.swiper-pagination-bullet) {
+  background: var(--color-white) !important;
+  opacity: 0.5;
+}
+
+:global(.swiper-pagination-bullet-active) {
+  background: var(--color-primary) !important;
+  opacity: 1;
+  width: 25px; /* Long pill shape for active bullet */
+  border-radius: var(--radius-full);
+}
+
+:global(.swiper-button-next), :global(.swiper-button-prev) {
+  color: var(--color-white) !important;
+  background: rgba(255, 255, 255, 0.1);
+  width: 40px !important;
+  height: 40px !important;
+  border-radius: 50%;
+  backdrop-filter: blur(5px);
+}
+
+:global(.swiper-button-next:after), :global(.swiper-button-prev:after) {
+  font-size: 1.2rem !important;
+  font-weight: bold;
+}
+
+/* Simple Animation */
+@keyframes slideInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .heroContainer {
+    height: 45vh; /* Even more compact on mobile */
+  }
+  .overlay {
+    padding: 0 var(--space-6);
+    justify-content: center;
+    text-align: center;
+    background: rgba(0,0,0,0.3); /* Darken more for centered text */
+  }
+  .heroTitle {
+    font-size: 1.8rem;
+  }
+  .heroSubtitle {
+    font-size: 0.95rem;
+  }
+}
+
+/* Loader styling */
+.loader {
+  width: 100%;
+  height: 55vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-gray-50);
+  color: var(--color-primary);
+  font-weight: bold;
+}

@@ -1,0 +1,80 @@
+.sectionContainer {
+  padding: var(--space-2) 0;
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+  padding-inline: var(--space-6);
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--space-6);
+}
+
+.title {
+  font-size: 1.5rem;
+  font-weight: var(--font-weight-bold);
+  color: var(--color-secondary);
+}
+
+.viewAll {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  color: var(--color-primary);
+  font-weight: var(--font-weight-semibold);
+  font-size: 0.9rem;
+  transition: gap var(--transition-fast);
+}
+
+.viewAll:hover {
+  gap: var(--space-2);
+}
+
+/* Horizontal Scroll logic */
+.scrollContainer {
+  display: flex;
+  gap: var(--space-4);
+  overflow-x: auto;
+  padding-bottom: var(--space-4);
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  
+  /* Snap logic for mobile */
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none; /* Firefox */
+}
+
+.scrollContainer::-webkit-scrollbar {
+  display: none; /* Chrome/Safari */
+}
+
+.cardWrapper {
+  flex: 0 0 180px; /* Small cards like Lenskart */
+  scroll-snap-align: start;
+}
+
+@media (max-width: 768px) {
+  .sectionContainer {
+    padding-inline: var(--space-4);
+  }
+  .cardWrapper {
+    flex: 0 0 160px; /* Slightly smaller on mobile */
+  }
+  .title {
+    font-size: 1.25rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .sectionContainer {
+    padding-inline: var(--space-2);
+  }
+  .cardWrapper {
+    flex: 0 0 160px; /* Slightly smaller on mobile */
+  }
+  .title {
+    font-size: 1rem;
+  }
+}

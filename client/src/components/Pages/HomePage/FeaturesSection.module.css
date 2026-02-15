@@ -1,0 +1,70 @@
+.features {
+  margin-top: 2px;
+  padding: var(--space-4) 0;
+  background-color: var(--color-gray-900); /* Dark professional theme */
+  color: var(--color-white);
+  border-bottom: 1px solid var(--color-gray-800);
+  
+}
+
+.container {
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+  padding: 0 var(--space-2);
+  display: flex;
+  flex-direction: row; /* Desktop + Mobile dono pe row rahega */
+  justify-content: space-around;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.card {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column; /* Mobile focus: Icon top pe text niche */
+  align-items: center;
+  text-align: center;
+  padding: var(--space-2);
+}
+
+.iconContainer {
+  color: var(--color-primary);
+  background: rgba(233, 30, 99, 0.1);
+  padding: var(--space-2);
+  border-radius: var(--radius-full);
+  margin-bottom: var(--space-1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.textGroup h3 {
+  font-size: 0.75rem; /* Compact desktop font */
+  font-weight: var(--font-weight-bold);
+  margin: 0;
+  white-space: nowrap;
+}
+
+.textGroup p {
+  font-size: 0.65rem;
+  color: var(--color-gray-400);
+  margin: 0;
+  line-height: 1.2;
+}
+
+/* --- Mobile Responsive (For 3 items in a row) --- */
+@media (max-width: 768px) {
+  .features {
+    padding: var(--space-3) 0;
+  }
+
+  .iconContainer {
+    padding: 6px;
+  }
+
+  .textGroup h3 {
+    font-size: 0.65rem; /* Extra compact for mobile */
+  }
+
+}

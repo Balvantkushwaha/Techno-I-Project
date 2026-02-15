@@ -1,0 +1,93 @@
+.offers {
+  padding: var(--space-8) 0;
+  background-color: var(--color-white);
+}
+
+.container {
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+  padding: 0 var(--space-4);
+  display: grid;
+  grid-template-columns: 1.5fr 1fr; /* Desktop pe ek bada aur ek chota banner */
+  gap: var(--space-4);
+}
+
+.banner {
+  position: relative;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  height: 250px;
+  cursor: pointer;
+  background-color: var(--color-gray-100);
+}
+
+.banner img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--transition-slow);
+}
+
+.banner:hover img {
+  transform: scale(1.05);
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to right, rgba(0,0,0,0.7), transparent);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: var(--space-8);
+  color: var(--color-white);
+}
+
+.tag {
+  background: var(--color-primary);
+  color: white;
+  padding: 2px 12px;
+  border-radius: var(--radius-full);
+  font-size: 0.75rem;
+  font-weight: bold;
+  width: fit-content;
+  margin-bottom: var(--space-2);
+}
+
+.banner h2 {
+  font-size: 1.8rem;
+  margin-bottom: var(--space-2);
+}
+
+.banner p {
+  font-size: 1rem;
+  opacity: 0.9;
+  margin-bottom: var(--space-4);
+}
+
+.shopBtn {
+  font-size: 0.85rem;
+  font-weight: bold;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+/* --- Mobile Responsive --- */
+@media (max-width: 768px) {
+  .container {
+    grid-template-columns: 1fr; /* Mobile pe stack ho jayenge */
+    gap: var(--space-3);
+  }
+  
+  .banner {
+    height: 180px;
+  }
+  
+  .banner h2 {
+    font-size: 1.4rem;
+  }
+
+  .overlay {
+    padding: var(--space-4);
+  }
+}

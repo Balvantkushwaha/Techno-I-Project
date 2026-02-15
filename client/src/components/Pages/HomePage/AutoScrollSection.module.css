@@ -1,0 +1,79 @@
+.autoSection {
+  padding: var(--space-2) 0;
+
+  overflow: hidden;
+  background-color: var(--color-white);
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--space-6) 0;
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+  padding-inline: var(--space-6);
+}
+
+/* Scroll Wrapper - Manual Scroll yahan se hoga */
+.scrollWrapper {
+  width: 100%;
+  overflow-x: auto; /* Manual scroll enable */
+  display: flex;
+  scroll-behavior: smooth;
+  scrollbar-width: none; /* Firefox */
+  -webkit-overflow-scrolling: touch;
+}
+
+.scrollWrapper::-webkit-scrollbar {
+  display: none; /* Chrome/Safari */
+}
+
+/* Inner Track - Animation yahan lagegi */
+.scrollTrack {
+  display: flex;
+  gap: 15px;
+  width: max-content;
+  /* Auto-scroll tabhi chalega jab mouse/touch nahi ho raha */
+  animation: infiniteScroll 40s linear infinite;
+}
+
+/* Jab user touch ya click karega, tab animation pause ho jayegi */
+.scrollWrapper:hover .scrollTrack,
+.scrollWrapper:active .scrollTrack {
+  animation-play-state: paused;
+}
+
+.cardItem {
+  flex: 0 0 200px;
+  pointer-events: auto; /* Click enable rakhne ke liye */
+}
+
+@keyframes infiniteScroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.titleGroup h2 {
+  font-size: 1.5rem;
+  font-weight: var(--font-weight-bold);
+  color: var(--color-secondary);
+}   
+
+@media (max-width: 768px) {
+  .cardItem {
+    flex: 0 0 160px;
+  }
+    .titleGroup h2 {
+        font-size: 1.25rem;
+    }
+
+}
+
+@media (max-width: 480px) {
+    .cardItem {
+        flex: 0 0 120px;
+    }
+    .titleGroup h2 {
+        font-size: 1rem;
+    }   
+}
