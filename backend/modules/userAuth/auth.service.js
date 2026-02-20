@@ -23,16 +23,18 @@ export const sendOtpService = async (identifier) => {
 
 // STEP 2: Verify OTP
 export const verifyOtpService = async (identifier, otp) => {
-  const record = await OTP.findOne({ identifier, otp });
+  console.log("Verifying OTP for:+++++", identifier, "OTP:", otp);
+  const record = await OTP.findOne({ identifier:String(identifier),  otp: String(otp), });
 
   if (!record) throw new Error("Invalid OTP");
 
   if (record.expiresAt < new Date())
     throw new Error("OTP expired");
+  console.log(".............");
 
   await OTP.deleteMany({ identifier });
-
-  return { verified: true, message: "OTP verified" };
+  console.log("fkddsjgdfgj")
+  return { success: true,message:"OTP verified successfully", verified: true };
 };
 
 // STEP 3: Register User

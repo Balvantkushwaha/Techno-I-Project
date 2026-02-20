@@ -125,8 +125,17 @@ export const verifyLoginOtp = async (req, res) => {
   console.log("api hit Verify Login OTP Called...");
   try {
     const { identifier, otp } = req.body;
+    console.log("Verifying OTP for:", identifier, "OTP:", otp);
 
-    await verifyOtpService(identifier, otp);
+    const resVerify = await verifyOtpService(identifier, otp);
+    
+    console.log("OTP verification response:", resVerify);
+    
+    if (!resVerify.verified) {
+      return res.status(400).json({ error: "Invalid OTP" });
+    }
+
+    console.log("OTP verified for:.......", identifier);
     
     const user = await User.findOne({
       $or: [{ email: identifier }, { mobile: identifier }]
