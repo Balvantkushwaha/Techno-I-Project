@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useNavigate, Link } from 'react-router';
 import { Check, ShoppingBag } from 'lucide-react';
-import { useCart } from '../../../context/CartContext';
+import { useCart } from '../../../contexts/CartContext';
 
 export function Checkout() {
   const navigate = useNavigate();

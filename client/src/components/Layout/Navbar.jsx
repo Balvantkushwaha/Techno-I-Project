@@ -1,9 +1,10 @@
 import { useState } from 'react';
-import { Link } from 'react-router';
+import { Link, Navigate } from 'react-router';
 import { Search, ShoppingCart, User, Menu, X, Eye, Sun, Package, LogOut, UserCircle } from 'lucide-react';
-import { useCart } from '../../context/CartContext';
-import { useAuth } from '../../context/AuthContext';
+import { useCart } from '../../contexts/CartContext';
+import { useAuth } from '../../contexts/AuthContext';
 import { LoginModal } from '../LoginModal';
+import Login from '../auth/Login';
 import styles from './Navbar.module.css';
 
 export function Navbar() {
@@ -103,7 +104,7 @@ export function Navbar() {
               ) : (
                 <button 
                   className={styles.loginButton}
-                  onClick={() => setShowLoginModal(true)}
+                  onClick={() => setShowLoginModal(true)}                // onClick={() => Navigate('/login')}
                 >
                   Login
                 </button>

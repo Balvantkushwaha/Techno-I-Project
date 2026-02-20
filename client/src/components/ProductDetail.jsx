@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useParams, Link, useNavigate } from 'react-router';
 import { Star, ShoppingCart, Heart, Check, ArrowLeft } from 'lucide-react';
 import { products } from '../data/products';
-import { useCart } from '../context/CartContext';
+import { useCart } from '../contexts/CartContext';
 
 export function ProductDetail() {
   const { id } = useParams();

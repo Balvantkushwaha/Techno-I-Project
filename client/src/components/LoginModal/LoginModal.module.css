@@ -175,6 +175,67 @@
   color: var(--color-error);
   font-size: 0.875rem;
   margin-top: var(--space-1);
+  background: rgba(239, 68, 68, 0.08);
+  border: 1px solid rgba(239, 68, 68, 0.2);
+  border-radius: var(--radius-sm);
+  padding: var(--space-2) var(--space-3);
+}
+
+.info {
+  color: #0c4a6e;
+  font-size: 0.875rem;
+  margin-top: var(--space-1);
+  background: rgba(14, 165, 233, 0.1);
+  border: 1px solid rgba(14, 165, 233, 0.25);
+  border-radius: var(--radius-sm);
+  padding: var(--space-2) var(--space-3);
+}
+
+.togglePills {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-2);
+  background: var(--color-gray-100);
+  border-radius: var(--radius-md);
+  padding: var(--space-1);
+}
+
+.pill {
+  padding: var(--space-2);
+  border-radius: var(--radius-sm);
+  background: transparent;
+  color: var(--color-gray-600);
+  font-weight: var(--font-weight-medium);
+  cursor: pointer;
+}
+
+.pillActive {
+  background: var(--color-white);
+  color: var(--color-primary);
+  box-shadow: var(--shadow-sm);
+}
+
+.row {
+  display: flex;
+  gap: var(--space-3);
+}
+
+.row > button {
+  flex: 1;
+}
+
+.secondaryButton {
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-md);
+  background: var(--color-gray-100);
+  color: var(--color-secondary);
+  border: 1px solid var(--color-gray-300);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.secondaryButton:hover {
+  background: var(--color-gray-200);
 }
 
 .forgotPassword {
@@ -275,4 +336,59 @@
 
 .footerLink:hover {
   text-decoration: underline;
+}
+
+
+/* Wrapper for switch button + forgot password */
+.switchLoginMethod {
+  margin-top: 14px;
+  display: flex;
+  justify-content: center;
+}
+
+/* Switch login method button */
+.switchButton {
+  background: none;
+  border: none;
+  color: #2563eb; /* blue */
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  padding: 6px 0;
+  transition: color 0.2s ease;
+}
+
+.switchButton:hover {
+  color: #1d4ed8;
+  text-decoration: underline;
+}
+
+/* Forgot password wrapper */
+.forgotPassword {
+  margin-top: 10px;
+  text-align: right;
+}
+
+/* Forgot password link */
+.forgotLink {
+  font-size: 13px;
+  color: #6b7280; /* gray */
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.forgotLink:hover {
+  color: #111827;
+  text-decoration: underline;
+}
+
+/* Mobile responsive */
+@media (max-width: 480px) {
+  .forgotPassword {
+    text-align: center;
+  }
+
+  .switchButton {
+    font-size: 13px;
+  }
 }
