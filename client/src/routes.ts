@@ -9,8 +9,16 @@ import { Checkout } from './components/Pages/CartPage/Checkout';
 import Login from './components/auth/Login';
 import Signup from './components/auth/Signup';
 import ForgotPassword from './components/auth/ForgotPassword';
+import AdminLoginPage from './components/Pages/AdminLoginPage/AdminLoginPage';
 
 export const router = createBrowserRouter([
+   // ✅ Admin route (NO layout)
+  {
+    path: "/adminlogin",
+    Component: AdminLoginPage,
+  },
+
+  // ✅ Main app with layout
   {
     path: '/',
     Component: Layout,
@@ -23,6 +31,7 @@ export const router = createBrowserRouter([
       { path: 'product/:id', Component: ProductDetail },
       { path: 'cart', Component: Cart },
       { path: 'checkout', Component: Checkout },
+      { path: "adminlogin", Component: AdminLoginPage },
       { path: '*', Component: NotFound },
     ],
   },

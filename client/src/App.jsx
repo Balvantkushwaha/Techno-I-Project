@@ -2,13 +2,14 @@ import { RouterProvider } from 'react-router';
 import { router } from './routes';
 import { CartProvider } from './contexts/CartContext';
 import { AuthProvider } from './contexts/AuthContext';
+
 function App() { 
 
   return (
     <>
      <AuthProvider>
           <CartProvider>
-            <RouterProvider router={router} />
+            <RouterProvider router={router} />        
           </CartProvider>
      </AuthProvider>
     </>

@@ -25,6 +25,7 @@ export const AuthProvider = ({ children }) => {
       const response = await authService.getProfile();
       setUser(response.data);
     } catch (error) {
+      console.error('Auth check failed:', error);
       setUser(null);
     } finally {
       setLoading(false);
