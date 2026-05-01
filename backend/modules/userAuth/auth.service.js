@@ -13,36 +13,59 @@ export const sendOtpService = async (identifier) => {
   await OTP.create({
     identifier,
     otp,
-    expiresAt: new Date(Date.now() + 5 * 60 * 1000) // 5 min
+    expiresAt: new Date(Date.now() + 5 * 60 * 1000), // 5 min
   });
 
   console.log("OTP:", otp); // SMS/Email integration here
 
-  return { success: true,message:"OTP sent successfully", data:otp };
+  return { success: true, message: "OTP sent successfully", data: otp };
 };
 
 // STEP 2: Verify OTP
 export const verifyOtpService = async (identifier, otp) => {
-  console.log("Verifying OTP for:+++++", identifier, "OTP:", otp);
-  const record = await OTP.findOne({ identifier:String(identifier),  otp: String(otp), });
+  console.log("Verifying OTP for:", identifier, "OTP:", otp);
+
+  const cleanIdentifier = String(identifier).trim().toLowerCase();  
+  const cleanOtp = String(otp).trim();
+
+  console.log("Cleaned Identifier:", cleanIdentifier, "Cleaned OTP:", cleanOtp);
+ 
+  const record = await OTP.findOne({
+    identifier: cleanIdentifier,
+    otp: cleanOtp,
+  });
 
   if (!record) throw new Error("Invalid OTP");
 
-  if (record.expiresAt < new Date())
-    throw new Error("OTP expired");
+  if (record.expiresAt < new Date()) throw new Error("OTP expired");
   console.log(".............");
 
-  await OTP.deleteMany({ identifier });
-  console.log("fkddsjgdfgj")
-  return { success: true,message:"OTP verified successfully", verified: true };
+  await OTP.deleteMany({ identifier: cleanIdentifier });
+  console.log("OTP verified and deleted for:", cleanIdentifier);
+  return {
+    success: true,
+    message: "OTP verified successfully",
+    verified: true,
+  };
 };
 
 // STEP 3: Register User
 export const registerUserService = async (data) => {
   // console.log("Register User Service Called with data:", data);
   const { identifier, firstName, lastName, password } = data;
-  if(!identifier){
-    throw new Error("Identifier (email or mobile) is required");  
+  if (!identifier) {
+    throw new Error("Identifier (email or mobile) is required");
+  }
+
+  const userExists = await User.findOne({
+    $or: [
+      { email: identifier.includes("@") ? identifier : undefined },
+      { mobile: !identifier.includes("@") ? identifier : undefined },
+    ],
+  });
+
+  if (userExists) {
+    throw new Error("User already exists");
   }
 
   const hashedPassword = await hashPassword(password);
@@ -53,13 +76,17 @@ export const registerUserService = async (data) => {
     firstName,
     lastName,
     password: hashedPassword,
-    isVerified: true
+    isVerified: true,
   });
   // console.log("User created in DB:", user);
 
   const token = generateToken(user._id);
 
-  return {success:true,message:"User registered successfully", data:{user, token} };
+  return {
+    success: true,
+    message: "User registered successfully",
+    data: { user, token },
+  };
 };
 
 export const setAuthCookie = (res, token) => {

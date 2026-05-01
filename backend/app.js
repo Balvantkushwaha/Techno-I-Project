@@ -2,6 +2,7 @@ import express from "express";
 import cors from "cors";
 import mainRoutes from "./modules/index.js" // Import module router
 import cookieParser from "cookie-parser";
+import { globalLimiter } from "./middlewares/rateLimiter.js";
 
 const app = express();
 
@@ -15,6 +16,9 @@ app.use(cors({
 }));
 app.use(express.json());
 
+// 🔥 Apply globally
+app.use(globalLimiter);
+
 // Sabhi feature routes yahan se handle honge
 // Example URL: http://localhost:5000/api/v1/
 app.use("/api/v1", mainRoutes);
@@ -22,7 +26,7 @@ app.use("/api/v1", mainRoutes);
 
 
 app.get("/", (req, res) => {
-  res.send("Lenskart Clone API is running with Modular Structure...");
+  res.send("Backend is running...");
 });
 
 export default app;
